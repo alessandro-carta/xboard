@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/icon-logo.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
+		<link rel="manifest" href="manifest.json">
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+
+<script lang="ts">
+	window.addEventListener('offline', (e)=>{
+		if(document.getElementsByClassName('user-header')){
+			var element = document.createElement("p");
+			element.innerHTML = "OFFLINE";
+			element.id = 'offline-element';
+			var header = document.getElementById('user-header');
+			header.appendChild(element);
+		}
+			
+	})
+
+	window.addEventListener('online', (e)=>{
+		if(document.getElementsByClassName('user-header')){
+			var element = document.getElementById("offline-element");
+			var header = document.getElementById('user-header');
+			header.removeChild(element);
+		}
+			
+	})
+</script>
